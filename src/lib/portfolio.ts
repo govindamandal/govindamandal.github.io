@@ -18,8 +18,10 @@ export function normalizePayload(item: PortfolioItem) {
   const payload: PortfolioItem = { ...item }
   delete payload._id
 
-  if (typeof payload.technologies === 'string') {
-    payload.technologies = toArray(payload.technologies)
+  for (const key of ['technologies', 'techStack', 'gallery', 'highlights', 'responsibilities', 'skills']) {
+    if (typeof payload[key] === 'string') {
+      payload[key] = toArray(payload[key])
+    }
   }
 
   for (const key of ['displayOrder', 'proficiency']) {

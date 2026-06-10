@@ -5,6 +5,7 @@ import type { PortfolioItem } from '../../types/portfolio'
 type HeroSectionProps = {
   profile: PortfolioItem
   settings: PortfolioItem
+  serviceCount: number
   projectCount: number
   experienceCount: number
   skillCount: number
@@ -14,6 +15,7 @@ type HeroSectionProps = {
 export function HeroSection({
   profile,
   settings,
+  serviceCount,
   projectCount,
   experienceCount,
   skillCount,
@@ -29,8 +31,8 @@ export function HeroSection({
         <h1>{String(settings.headline || profile.title || 'Full-stack developer')}</h1>
         <p>{String(settings.subheadline || profile.summary || '')}</p>
         <div className="hero-actions">
-          <a className="button" href="#work">
-            View work <ArrowUpRight size={18} />
+          <a className="button" href="#services">
+            View services <ArrowUpRight size={18} />
           </a>
           <a className="button secondary" href="#contact">
             Contact me
@@ -49,6 +51,7 @@ export function HeroSection({
           <span className="muted">{loading ? 'Syncing' : 'Live'}</span>
         </div>
         <div className="metric-grid">
+          <div className="metric"><strong>{serviceCount}</strong><span>Services offered</span></div>
           <div className="metric"><strong>{projectCount}+</strong><span>Projects and case studies</span></div>
           <div className="metric"><strong>{experienceCount}</strong><span>Experience entries</span></div>
           <div className="metric"><strong>{skillCount}</strong><span>Skills tracked</span></div>

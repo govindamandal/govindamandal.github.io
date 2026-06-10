@@ -18,9 +18,23 @@ export const fallbackData: SiteData = {
       'A dynamic portfolio powered by MongoDB, Vercel APIs, Cloudflare R2, and a custom admin panel.',
     availability: 'Available for meaningful web work'
   },
+  services: [
+    {
+      title: 'Full-Stack Web Development',
+      description: 'Build responsive, API-driven web applications from polished frontend screens to reliable backend integrations.',
+      highlights: ['Frontend implementation', 'Backend/API integration', 'Admin dashboards'],
+      technologies: ['React', 'Node.js', 'MongoDB']
+    },
+    {
+      title: 'Portfolio and Business Websites',
+      description: 'Create fast, maintainable websites with dynamic content management and deployment-ready architecture.',
+      highlights: ['Dynamic CMS flow', 'Responsive UI', 'Performance-focused delivery'],
+      technologies: ['React', 'Vite', 'Vercel']
+    }
+  ],
   experiences: [
     {
-      title: 'Professional Experience',
+      position: 'Professional Experience',
       company: 'Client and company projects',
       role: 'Full-Stack Developer',
       startDate: '2020',
@@ -31,18 +45,25 @@ export const fallbackData: SiteData = {
   projects: [
     {
       title: 'Dynamic Portfolio Platform',
+      slug: 'dynamic-portfolio-platform',
       role: 'Creator',
+      yourRole: 'Creator',
       description:
         'A custom portfolio and admin CMS where jobs, skills, projects, certifications, and profile content can be managed without code changes.',
       technologies: ['React', 'Vite', 'Vercel', 'MongoDB', 'Cloudflare R2'],
+      techStack: ['React', 'Vite', 'Vercel', 'MongoDB', 'Cloudflare R2'],
+      gallery: [],
       featured: true
     }
   ],
   skills: [
-    { name: 'React', category: 'Frontend' },
-    { name: 'Node.js', category: 'Backend' },
-    { name: 'MongoDB', category: 'Database' },
-    { name: 'Cloudflare R2', category: 'Storage' }
+    { name: 'React', category: 'Frontend', proficiency: 8 },
+    { name: 'Node.js', category: 'Backend', proficiency: 8 },
+    { name: 'MongoDB', category: 'Database', proficiency: 7 },
+    { name: 'REST API', category: 'Messaging & Streaming', proficiency: 8 },
+    { name: 'Cloudflare R2', category: 'Cloud', proficiency: 6 },
+    { name: 'Git', category: 'Observability & Tools', proficiency: 8 },
+    { name: 'Codex', category: 'AI Tools', proficiency: 7 }
   ],
   certifications: [],
   courses: [],

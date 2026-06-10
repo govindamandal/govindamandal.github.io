@@ -18,6 +18,7 @@ export type PortfolioItem = Record<string, unknown> & {
 export type SiteData = {
   profile?: PortfolioItem | null
   siteSettings?: PortfolioItem | null
+  services: PortfolioItem[]
   experiences: PortfolioItem[]
   projects: PortfolioItem[]
   skills: PortfolioItem[]

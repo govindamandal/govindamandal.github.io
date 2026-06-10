@@ -1,5 +1,6 @@
 import {
   BriefcaseBusiness,
+  FileText,
   FolderKanban,
   GraduationCap,
   Medal,
@@ -12,17 +13,40 @@ import type { CollectionConfig } from '../types/portfolio'
 
 export const collectionConfigs: CollectionConfig[] = [
   {
+    key: 'services',
+    label: 'Services',
+    icon: <Sparkles size={18} />,
+    fields: [
+      { name: 'title', label: 'Service title' },
+      { name: 'slug', label: 'Slug' },
+      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'highlights', label: 'Highlights', placeholder: 'Admin dashboards, API integrations' },
+      { name: 'technologies', label: 'Technologies', placeholder: 'React, Node.js, MongoDB' },
+      { name: 'icon', label: 'Icon' },
+      { name: 'displayOrder', label: 'Display order', type: 'number' },
+      { name: 'featured', label: 'Featured', type: 'checkbox' },
+      { name: 'isPublic', label: 'Published', type: 'checkbox' }
+    ]
+  },
+  {
     key: 'projects',
     label: 'Projects',
     icon: <FolderKanban size={18} />,
     fields: [
       { name: 'title', label: 'Project title' },
-      { name: 'company', label: 'Company or client' },
-      { name: 'role', label: 'Your role' },
+      { name: 'slug', label: 'Slug' },
+      { name: 'company', label: 'Company' },
+      { name: 'client', label: 'Client' },
       { name: 'description', label: 'Description', type: 'textarea' },
-      { name: 'technologies', label: 'Technologies', placeholder: 'React, Node.js, MongoDB' },
+      { name: 'yourRole', label: 'Your role' },
+      { name: 'techStack', label: 'Tech stack', placeholder: 'React, Node.js, MongoDB' },
       { name: 'liveUrl', label: 'Live URL', type: 'url' },
-      { name: 'imageUrl', label: 'Image URL', type: 'url' },
+      { name: 'githubUrl', label: 'GitHub URL', type: 'url' },
+      { name: 'image', label: 'Main image URL', type: 'url' },
+      { name: 'gallery', label: 'Gallery image URLs', placeholder: 'https://..., https://...' },
+      { name: 'startDate', label: 'Start date' },
+      { name: 'endDate', label: 'End date' },
+      { name: 'status', label: 'Status', placeholder: 'draft, published, archived' },
       { name: 'featured', label: 'Featured', type: 'checkbox' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
@@ -33,13 +57,17 @@ export const collectionConfigs: CollectionConfig[] = [
     icon: <BriefcaseBusiness size={18} />,
     fields: [
       { name: 'title', label: 'Job title' },
+      { name: 'position', label: 'Position' },
       { name: 'company', label: 'Company' },
       { name: 'location', label: 'Location' },
       { name: 'startDate', label: 'Start date' },
       { name: 'endDate', label: 'End date' },
+      { name: 'currentlyWorking', label: 'Currently working', type: 'checkbox' },
       { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'responsibilities', label: 'Responsibilities', placeholder: 'Built APIs, Improved performance' },
       { name: 'technologies', label: 'Technologies', placeholder: 'React, PHP, MySQL' },
       { name: 'companyUrl', label: 'Company URL', type: 'url' },
+      { name: 'logo', label: 'Logo URL', type: 'url' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
   },
@@ -49,7 +77,7 @@ export const collectionConfigs: CollectionConfig[] = [
     icon: <Wrench size={18} />,
     fields: [
       { name: 'name', label: 'Skill name' },
-      { name: 'category', label: 'Category' },
+      { name: 'category', label: 'Category', placeholder: 'Backend, Frontend, Database, Messaging & Streaming, Cloud, Observability & Tools, AI Tools' },
       { name: 'proficiency', label: 'Proficiency', type: 'number' },
       { name: 'displayOrder', label: 'Display order', type: 'number' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
@@ -91,6 +119,29 @@ export const collectionConfigs: CollectionConfig[] = [
       { name: 'company', label: 'Company' },
       { name: 'quote', label: 'Quote', type: 'textarea' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
+    ]
+  },
+  {
+    key: 'resume',
+    label: 'Resume',
+    icon: <FileText size={18} />,
+    fields: [
+      { name: 'title', label: 'Resume title' },
+      { name: 'fileUrl', label: 'File URL', type: 'url' },
+      { name: 'version', label: 'Version' },
+      { name: 'isPrimary', label: 'Primary resume', type: 'checkbox' },
+      { name: 'isPublic', label: 'Published', type: 'checkbox' }
+    ]
+  },
+  {
+    key: 'contactMessages',
+    label: 'Contact Messages',
+    icon: <FileText size={18} />,
+    fields: [
+      { name: 'name', label: 'Name' },
+      { name: 'email', label: 'Email' },
+      { name: 'message', label: 'Message', type: 'textarea' },
+      { name: 'status', label: 'Status', placeholder: 'new, read, archived' }
     ]
   },
   {

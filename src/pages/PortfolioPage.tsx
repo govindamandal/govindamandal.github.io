@@ -3,8 +3,9 @@ import { PublicLayout } from '../components/layout/PublicLayout'
 import { ContactSection } from '../components/portfolio/ContactSection'
 import { ExperienceSection } from '../components/portfolio/ExperienceSection'
 import { HeroSection } from '../components/portfolio/HeroSection'
+import { ProjectsSection } from '../components/portfolio/ProjectsSection'
+import { ServicesSection } from '../components/portfolio/ServicesSection'
 import { SkillsSection } from '../components/portfolio/SkillsSection'
-import { WorkSection } from '../components/portfolio/WorkSection'
 import { fallbackData } from '../data/fallbackData'
 import { apiFetch } from '../lib/api'
 import type { SiteData } from '../types/portfolio'
@@ -22,6 +23,7 @@ export function PortfolioPage() {
 
   const profile = site.profile || fallbackData.profile!
   const settings = site.siteSettings || fallbackData.siteSettings!
+  const services = site.services?.length ? site.services : fallbackData.services
   const projects = site.projects.length ? site.projects : fallbackData.projects
   const skills = site.skills.length ? site.skills : fallbackData.skills
   const experiences = site.experiences.length ? site.experiences : fallbackData.experiences
@@ -31,12 +33,14 @@ export function PortfolioPage() {
       <HeroSection
         profile={profile}
         settings={settings}
+        serviceCount={services.length}
         projectCount={projects.length}
         experienceCount={experiences.length}
         skillCount={skills.length}
         loading={loading}
       />
-      <WorkSection projects={projects} />
+      <ServicesSection services={services} />
+      <ProjectsSection projects={projects} />
       <ExperienceSection experiences={experiences} />
       <SkillsSection skills={skills} />
       <ContactSection email={String(profile.email || '')} />

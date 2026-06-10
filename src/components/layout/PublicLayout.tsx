@@ -15,7 +15,8 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
             <span>{String(profile.name || 'Govinda Mandal')}</span>
           </a>
           <nav className="nav-links" aria-label="Primary navigation">
-            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>

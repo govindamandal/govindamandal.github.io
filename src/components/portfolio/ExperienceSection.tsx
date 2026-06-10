@@ -10,9 +10,9 @@ export function ExperienceSection({ experiences }: { experiences: PortfolioItem[
           <article className="card timeline-item" key={experience._id || index}>
             <div className="muted">{String(experience.startDate || '')} {experience.endDate ? `- ${experience.endDate}` : ''}</div>
             <div>
-              <h3>{itemTitle(experience)}</h3>
-              <p className="muted">{String(experience.company || experience.role || '')}</p>
-              <p>{String(experience.description || '')}</p>
+                  <h3>{String(experience.position || itemTitle(experience))}</h3>
+                  <p className="muted">{String(experience.company || experience.role || '')}</p>
+                  <p>{String(experience.description || '')}</p>
             </div>
           </article>
         ))}
