@@ -57,7 +57,7 @@ type CollectionConfig = {
   fields: FieldConfig[]
 }
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-api.vercel.app'
+const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-api-seven-topaz.vercel.app'
 
 const fallbackData: SiteData = {
   profile: {
