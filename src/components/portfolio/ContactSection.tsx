@@ -1,0 +1,47 @@
+import type { FormEvent } from 'react'
+import { useState } from 'react'
+import { Mail } from 'lucide-react'
+import { apiFetch } from '../../lib/api'
+import { Section } from './Section'
+
+export function ContactSection({ email }: { email: string }) {
+  return (
+    <Section id="contact" title="Let us build something useful" copy="Messages can be stored in MongoDB through the API, so future inquiries stay available in your backend.">
+      <ContactForm email={email} />
+    </Section>
+  )
+}
+
+function ContactForm({ email }: { email: string }) {
+  const [status, setStatus] = useState('')
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const payload = Object.fromEntries(formData.entries())
+
+    try {
+      await apiFetch('/api/contact', { method: 'POST', body: JSON.stringify(payload) })
+      setStatus('Message saved. I will get back to you soon.')
+      event.currentTarget.reset()
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : 'Could not send message')
+    }
+  }
+
+  return (
+    <div className="card contact-band">
+      <div>
+        <h3>Contact</h3>
+        <p className="muted">Prefer email? Reach me at {email || 'your configured email'}.</p>
+      </div>
+      <form className="form" onSubmit={submit}>
+        <label className="field"><span>Name</span><input className="input" name="name" required /></label>
+        <label className="field"><span>Email</span><input className="input" name="email" type="email" required /></label>
+        <label className="field"><span>Message</span><textarea className="textarea" name="message" required /></label>
+        <button className="button" type="submit"><Mail size={18} /> Send message</button>
+        {status ? <p className="muted">{status}</p> : null}
+      </form>
+    </div>
+  )
+}
