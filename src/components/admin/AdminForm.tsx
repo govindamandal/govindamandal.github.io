@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Editor } from 'react-simple-wysiwyg'
+import Editor from 'react-simple-wysiwyg'
 import { apiFetch } from '../../lib/api'
 import { toArray } from '../../lib/portfolio'
 import type { CollectionConfig, PortfolioItem } from '../../types/portfolio'
