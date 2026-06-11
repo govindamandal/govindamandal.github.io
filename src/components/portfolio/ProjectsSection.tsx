@@ -2,6 +2,7 @@ import { X } from 'lucide-react'
 import { useState } from 'react'
 import { itemTitle, toArray } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { RichText } from './RichText'
 import { Section } from './Section'
 
 export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
@@ -16,7 +17,7 @@ export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
             <div className="project-card-body">
               <p className="muted">{String(project.company || project.client || project.yourRole || project.role || 'Project')}</p>
               <h3>{itemTitle(project)}</h3>
-              <p>{String(project.description || 'Add details from the admin panel.')}</p>
+              <RichText value={project.description || 'Add details from the admin panel.'} />
               <div className="tag-row">
                 {toArray(project.techStack || project.technologies).slice(0, 5).map((technology) => (
                   <span className="tag" key={technology}>{technology}</span>
@@ -73,7 +74,7 @@ function ProjectModal({ project, onClose }: { project: PortfolioItem; onClose: (
         <div className="project-detail-grid">
           <div>
             <h3>Overview</h3>
-            <p>{String(project.description || '')}</p>
+            <RichText value={project.description} />
           </div>
           <div>
             <h3>My Role</h3>

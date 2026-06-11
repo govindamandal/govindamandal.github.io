@@ -1,5 +1,6 @@
 import { itemTitle } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { RichText } from './RichText'
 import { Section } from './Section'
 
 export function ExperienceSection({ experiences }: { experiences: PortfolioItem[] }) {
@@ -12,7 +13,7 @@ export function ExperienceSection({ experiences }: { experiences: PortfolioItem[
             <div>
                   <h3>{String(experience.position || itemTitle(experience))}</h3>
                   <p className="muted">{String(experience.company || experience.role || '')}</p>
-                  <p>{String(experience.description || '')}</p>
+                  <RichText value={experience.description} />
             </div>
           </article>
         ))}

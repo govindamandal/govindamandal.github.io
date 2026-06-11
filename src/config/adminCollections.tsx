@@ -19,7 +19,7 @@ export const collectionConfigs: CollectionConfig[] = [
     fields: [
       { name: 'title', label: 'Service title' },
       { name: 'slug', label: 'Slug' },
-      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'description', label: 'Description', type: 'editor' },
       { name: 'highlights', label: 'Highlights', placeholder: 'Admin dashboards, API integrations' },
       { name: 'technologies', label: 'Technologies', placeholder: 'React, Node.js, MongoDB' },
       { name: 'icon', label: 'Icon', type: 'file', accept: 'image/*' },
@@ -37,16 +37,24 @@ export const collectionConfigs: CollectionConfig[] = [
       { name: 'slug', label: 'Slug' },
       { name: 'company', label: 'Company' },
       { name: 'client', label: 'Client' },
-      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'projectType', label: 'Project type', type: 'radio', options: [
+        { label: 'Personal Project', value: 'personal' },
+        { label: 'Company/Client Project', value: 'company-client' }
+      ] },
+      { name: 'description', label: 'Description', type: 'editor' },
       { name: 'yourRole', label: 'Your role' },
       { name: 'techStack', label: 'Tech stack', placeholder: 'React, Node.js, MongoDB' },
       { name: 'liveUrl', label: 'Live URL', type: 'url' },
       { name: 'githubUrl', label: 'GitHub URL', type: 'url' },
       { name: 'image', label: 'Main image', type: 'file', accept: 'image/*' },
       { name: 'gallery', label: 'Gallery images', type: 'file', accept: 'image/*', multiple: true },
-      { name: 'startDate', label: 'Start date' },
-      { name: 'endDate', label: 'End date' },
-      { name: 'status', label: 'Status', placeholder: 'draft, published, archived' },
+      { name: 'startDate', label: 'Start date', type: 'month' },
+      { name: 'endDate', label: 'End date', type: 'month' },
+      { name: 'status', label: 'Project status', type: 'radio', options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Published', value: 'published' },
+        { label: 'Archived', value: 'archived' }
+      ] },
       { name: 'featured', label: 'Featured', type: 'checkbox' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
@@ -60,10 +68,10 @@ export const collectionConfigs: CollectionConfig[] = [
       { name: 'position', label: 'Position' },
       { name: 'company', label: 'Company' },
       { name: 'location', label: 'Location' },
-      { name: 'startDate', label: 'Start date' },
-      { name: 'endDate', label: 'End date' },
       { name: 'currentlyWorking', label: 'Currently working', type: 'checkbox' },
-      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'startDate', label: 'Start date', type: 'month' },
+      { name: 'endDate', label: 'End date', type: 'month', disabledWhen: { field: 'currentlyWorking', value: true } },
+      { name: 'description', label: 'Description', type: 'editor' },
       { name: 'responsibilities', label: 'Responsibilities', placeholder: 'Built APIs, Improved performance' },
       { name: 'technologies', label: 'Technologies', placeholder: 'React, PHP, MySQL' },
       { name: 'companyUrl', label: 'Company URL', type: 'url' },
@@ -78,7 +86,7 @@ export const collectionConfigs: CollectionConfig[] = [
     fields: [
       { name: 'name', label: 'Skill name' },
       { name: 'category', label: 'Category', placeholder: 'Backend, Frontend, Database, Messaging & Streaming, Cloud, Observability & Tools, AI Tools' },
-      { name: 'proficiency', label: 'Proficiency', type: 'number' },
+      { name: 'proficiency', label: 'Proficiency', type: 'number', min: 0, max: 100 },
       { name: 'icon', label: 'Icon', type: 'file', accept: 'image/*' },
       { name: 'displayOrder', label: 'Display order', type: 'number' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
@@ -91,10 +99,10 @@ export const collectionConfigs: CollectionConfig[] = [
     fields: [
       { name: 'title', label: 'Certification title' },
       { name: 'issuer', label: 'Issuer' },
-      { name: 'issuedAt', label: 'Issued at' },
+      { name: 'issuedAt', label: 'Issue Date', type: 'date' },
       { name: 'credentialUrl', label: 'Credential URL', type: 'url' },
       { name: 'imageUrl', label: 'Certificate image', type: 'file', accept: 'image/*,application/pdf' },
-      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'description', label: 'Description', type: 'editor' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
   },
@@ -108,7 +116,7 @@ export const collectionConfigs: CollectionConfig[] = [
       { name: 'completedAt', label: 'Completed at' },
       { name: 'courseUrl', label: 'Course URL', type: 'url' },
       { name: 'certificateUrl', label: 'Certificate file', type: 'file', accept: 'image/*,application/pdf' },
-      { name: 'description', label: 'Description', type: 'textarea' },
+      { name: 'description', label: 'Description', type: 'editor' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
   },
@@ -121,7 +129,7 @@ export const collectionConfigs: CollectionConfig[] = [
       { name: 'role', label: 'Person role' },
       { name: 'company', label: 'Company' },
       { name: 'avatarUrl', label: 'Avatar', type: 'file', accept: 'image/*' },
-      { name: 'quote', label: 'Quote', type: 'textarea' },
+      { name: 'quote', label: 'Quote', type: 'editor' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
   },
@@ -144,7 +152,7 @@ export const collectionConfigs: CollectionConfig[] = [
     fields: [
       { name: 'name', label: 'Name' },
       { name: 'email', label: 'Email' },
-      { name: 'message', label: 'Message', type: 'textarea' },
+      { name: 'message', label: 'Message', type: 'editor' },
       { name: 'status', label: 'Status', placeholder: 'new, read, archived' }
     ]
   },
@@ -155,7 +163,7 @@ export const collectionConfigs: CollectionConfig[] = [
     fields: [
       { name: 'name', label: 'Name' },
       { name: 'title', label: 'Professional title' },
-      { name: 'summary', label: 'Summary', type: 'textarea' },
+      { name: 'summary', label: 'Summary', type: 'editor' },
       { name: 'location', label: 'Location' },
       { name: 'email', label: 'Email' },
       { name: 'linkedInUrl', label: 'LinkedIn URL', type: 'url' },
@@ -171,8 +179,8 @@ export const collectionConfigs: CollectionConfig[] = [
     icon: <Settings size={18} />,
     fields: [
       { name: 'key', label: 'Settings key', placeholder: 'default' },
-      { name: 'headline', label: 'Hero headline', type: 'textarea' },
-      { name: 'subheadline', label: 'Hero subheadline', type: 'textarea' },
+      { name: 'headline', label: 'Hero headline', type: 'editor' },
+      { name: 'subheadline', label: 'Hero subheadline', type: 'editor' },
       { name: 'availability', label: 'Availability text' },
       { name: 'ogImage', label: 'Open Graph image', type: 'file', accept: 'image/*' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }

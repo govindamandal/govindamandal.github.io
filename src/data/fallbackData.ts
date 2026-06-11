@@ -57,13 +57,13 @@ export const fallbackData: SiteData = {
     }
   ],
   skills: [
-    { name: 'React', category: 'Frontend', proficiency: 8 },
-    { name: 'Node.js', category: 'Backend', proficiency: 8 },
-    { name: 'MongoDB', category: 'Database', proficiency: 7 },
-    { name: 'REST API', category: 'Messaging & Streaming', proficiency: 8 },
-    { name: 'Cloudflare R2', category: 'Cloud', proficiency: 6 },
-    { name: 'Git', category: 'Observability & Tools', proficiency: 8 },
-    { name: 'Codex', category: 'AI Tools', proficiency: 7 }
+    { name: 'React', category: 'Frontend', proficiency: 80 },
+    { name: 'Node.js', category: 'Backend', proficiency: 80 },
+    { name: 'MongoDB', category: 'Database', proficiency: 70 },
+    { name: 'REST API', category: 'Messaging & Streaming', proficiency: 80 },
+    { name: 'Cloudflare R2', category: 'Cloud', proficiency: 60 },
+    { name: 'Git', category: 'Observability & Tools', proficiency: 80 },
+    { name: 'Codex', category: 'AI Tools', proficiency: 70 }
   ],
   certifications: [],
   courses: [],

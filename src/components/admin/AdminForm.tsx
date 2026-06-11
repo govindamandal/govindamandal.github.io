@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Editor } from 'react-simple-wysiwyg'
 import { apiFetch } from '../../lib/api'
 import { toArray } from '../../lib/portfolio'
 import type { CollectionConfig, PortfolioItem } from '../../types/portfolio'
@@ -15,8 +16,16 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete }: AdminFo
   const [draft, setDraft] = useState<PortfolioItem>(item)
   const [uploadingField, setUploadingField] = useState('')
 
-  function update(name: string, value: string | boolean) {
-    setDraft((current) => ({ ...current, [name]: value }))
+  function update(name: string, value: string | boolean | number) {
+    setDraft((current) => {
+      const next = { ...current, [name]: value }
+
+      if (name === 'currentlyWorking' && value === true) {
+        next.endDate = ''
+      }
+
+      return next
+    })
   }
 
   async function uploadFiles(name: string, files: FileList | null, multiple = false) {
@@ -70,13 +79,32 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete }: AdminFo
       {config.fields.map((field) => (
         <label className="field" key={field.name}>
           <span>{field.label}</span>
-          {field.type === 'textarea' ? (
-            <textarea className="textarea" value={String(draft[field.name] || '')} placeholder={field.placeholder} onChange={(event) => update(field.name, event.target.value)} />
+          {field.type === 'editor' || field.type === 'textarea' ? (
+            <Editor
+              className="rich-editor"
+              value={String(draft[field.name] || '')}
+              onChange={(event) => update(field.name, event.target.value)}
+            />
           ) : field.type === 'checkbox' ? (
-            <select className="select" value={draft[field.name] === false ? 'false' : 'true'} onChange={(event) => update(field.name, event.target.value === 'true')}>
+            <select className="select" value={draft[field.name] === true ? 'true' : 'false'} onChange={(event) => update(field.name, event.target.value === 'true')}>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>
+          ) : field.type === 'radio' ? (
+            <div className="radio-group">
+              {field.options?.map((option) => (
+                <label className="radio-option" key={String(option.value)}>
+                  <input
+                    checked={(draft[field.name] ?? '') === option.value}
+                    name={field.name}
+                    type="radio"
+                    value={String(option.value)}
+                    onChange={() => update(field.name, option.value)}
+                  />
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </div>
           ) : field.type === 'file' ? (
             <FileField
               accept={field.accept}
@@ -87,7 +115,16 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete }: AdminFo
               onChange={(files) => uploadFiles(field.name, files, field.multiple)}
             />
           ) : (
-            <input className="input" type={field.type || 'text'} value={String(draft[field.name] || '')} placeholder={field.placeholder} onChange={(event) => update(field.name, event.target.value)} />
+            <input
+              className="input"
+              disabled={isFieldDisabled(field, draft)}
+              max={field.max}
+              min={field.min}
+              type={field.type || 'text'}
+              value={String(draft[field.name] || '')}
+              placeholder={field.placeholder}
+              onChange={(event) => update(field.name, field.type === 'number' ? Number(event.target.value) : event.target.value)}
+            />
           )}
         </label>
       ))}
@@ -97,6 +134,14 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete }: AdminFo
       </div>
     </form>
   )
+}
+
+function isFieldDisabled(field: CollectionConfig['fields'][number], draft: PortfolioItem) {
+  if (!field.disabledWhen) {
+    return false
+  }
+
+  return draft[field.disabledWhen.field] === field.disabledWhen.value
 }
 
 function FileField({

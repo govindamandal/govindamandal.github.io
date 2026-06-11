@@ -89,6 +89,29 @@ button { cursor: pointer; }
 .field label, .field span { color: #344054; font-size: 0.88rem; font-weight: 700; }
 .input, .textarea, .select { width: 100%; padding: 12px 13px; color: #101828; border: 1px solid rgba(16, 24, 40, 0.14); border-radius: 8px; background: #fff; }
 .textarea { min-height: 110px; resize: vertical; }
+.rich-editor {
+  min-height: 148px;
+  overflow: hidden;
+  border: 1px solid rgba(16, 24, 40, 0.14) !important;
+  border-radius: 8px;
+  background: #fff;
+}
+.rich-editor [contenteditable="true"] {
+  min-height: 106px;
+}
+.rich-text {
+  color: #475467;
+  line-height: 1.7;
+}
+.rich-text p {
+  margin: 0 0 10px;
+}
+.rich-text p:last-child {
+  margin-bottom: 0;
+}
+.radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+.radio-option { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border: 1px solid rgba(16, 24, 40, 0.12); border-radius: 8px; background: #fff; }
+.radio-option span { font-weight: 700; }
 .file-field { display: grid; gap: 8px; }
 .uploaded-list { display: grid; gap: 6px; padding: 10px; border: 1px solid rgba(16, 24, 40, 0.08); border-radius: 8px; background: #f9fafb; }
 .uploaded-list a { overflow: hidden; color: #1849a9; font-size: 0.86rem; text-overflow: ellipsis; white-space: nowrap; }

@@ -1,5 +1,6 @@
 import { itemTitle, toArray } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { RichText } from './RichText'
 import { Section } from './Section'
 
 export function ServicesSection({ services }: { services: PortfolioItem[] }) {
@@ -10,7 +11,7 @@ export function ServicesSection({ services }: { services: PortfolioItem[] }) {
           <article className="card service-card" key={service._id || index}>
             <span className="service-index">{String(index + 1).padStart(2, '0')}</span>
             <h3>{itemTitle(service)}</h3>
-            <p className="muted">{String(service.description || '')}</p>
+            <RichText value={service.description} />
             <div className="tag-row">
               {toArray(service.technologies).slice(0, 5).map((technology) => (
                 <span className="tag" key={technology}>{technology}</span>

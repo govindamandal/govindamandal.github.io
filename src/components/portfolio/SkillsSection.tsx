@@ -40,8 +40,7 @@ export function SkillsSection({ skills }: { skills: PortfolioItem[] }) {
 }
 
 function SkillMeter({ skill }: { skill: PortfolioItem }) {
-  const proficiency = Math.max(1, Math.min(10, Number(skill.proficiency || 5)))
-  const percent = proficiency * 10
+  const proficiency = Math.max(0, Math.min(100, Number(skill.proficiency || 0)))
 
   return (
     <div className="skill-meter">
@@ -50,10 +49,10 @@ function SkillMeter({ skill }: { skill: PortfolioItem }) {
           <SkillIcon skill={skill} />
           <strong>{itemTitle(skill)}</strong>
         </span>
-        <span>{proficiency}/10</span>
+        <span>{proficiency}%</span>
       </div>
-      <div className="skill-track" aria-label={`${itemTitle(skill)} proficiency ${percent}%`}>
-        <span style={{ width: `${percent}%` }} />
+      <div className="skill-track" aria-label={`${itemTitle(skill)} proficiency ${proficiency}%`}>
+        <span style={{ width: `${proficiency}%` }} />
       </div>
     </div>
   )
