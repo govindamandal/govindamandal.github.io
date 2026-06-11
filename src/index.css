@@ -295,7 +295,8 @@ button { cursor: pointer; }
   .work-card.featured { grid-column: auto; }
   .project-image { min-height: 220px; }
   .timeline-item { grid-template-columns: 1fr; }
-  .nav-inner { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+  .nav-inner { align-items: center; flex-direction: column; padding: 16px 0; }
+  .brand { justify-content: center; width: 100%; }
   .nav-actions { align-items: flex-start; width: 100%; justify-content: space-between; }
   .nav-links { flex-wrap: wrap; }
   .hero { padding-top: 196px; }

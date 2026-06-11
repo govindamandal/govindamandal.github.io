@@ -34,7 +34,7 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
       </div>
       <header className="nav">
         <div className="shell nav-inner">
-          <a className="brand" href="#/">
+          <a className="brand" href="/">
             <span className="brand-mark">GM</span>
             <span>{String(profile.name || 'Govinda Mandal')}</span>
           </a>

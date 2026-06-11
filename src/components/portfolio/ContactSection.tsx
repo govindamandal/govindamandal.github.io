@@ -7,7 +7,7 @@ import { Section } from './Section'
 
 export function ContactSection({ profile }: { profile: PortfolioItem }) {
   return (
-    <Section id="contact" title="Let us build something useful" copy="Messages can be stored in MongoDB through the API, so future inquiries stay available in your backend.">
+    <Section id="contact" title="Let us build something useful" copy="Messages will be stored in our database, so future inquiries stay available in the history.">
       <ContactForm profile={profile} />
     </Section>
   )
