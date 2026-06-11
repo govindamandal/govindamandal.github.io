@@ -28,6 +28,10 @@ export function PortfolioPage() {
   const skills = site.skills.length ? site.skills : fallbackData.skills
   const experiences = site.experiences.length ? site.experiences : fallbackData.experiences
 
+  useEffect(() => {
+    document.title = `Portfolio | ${String(profile.name || 'Govinda Mandal')}`
+  }, [profile.name])
+
   return (
     <PublicLayout profile={profile}>
       <HeroSection
