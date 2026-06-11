@@ -27,7 +27,7 @@ function ContactForm({ profile }: { profile: PortfolioItem }) {
 
     try {
       await apiFetch('/api/contact', { method: 'POST', body: JSON.stringify(payload) })
-      setStatus('Message saved. I will get back to you soon.')
+      setStatus('Message sent. I will get back to you soon.')
       event.currentTarget.reset()
     } catch (error) {
       setStatus(error instanceof Error ? error.message : 'Could not send message')
