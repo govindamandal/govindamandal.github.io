@@ -40,6 +40,14 @@ button { cursor: pointer; }
 .hero p { max-width: 680px; margin: 0; color: #475467; font-size: 1.12rem; line-height: 1.75; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .hero-panel { border: 1px solid rgba(16, 24, 40, 0.10); border-radius: 8px; background: rgba(255, 255, 255, 0.66); box-shadow: 0 24px 80px rgba(16, 24, 40, 0.10); overflow: hidden; }
+.profile-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.profile-meta a, .profile-meta span { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; color: #344054; border: 1px solid rgba(16, 24, 40, 0.10); border-radius: 999px; background: rgba(255, 255, 255, 0.58); font-size: 0.92rem; font-weight: 700; }
+.profile-meta a:hover { color: #1849a9; border-color: rgba(24, 73, 169, 0.24); }
+.profile-card { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; align-items: center; padding: 18px; border-bottom: 1px solid rgba(16, 24, 40, 0.08); background: #fff; }
+.profile-card strong { display: block; font-size: 1.2rem; }
+.profile-card span { display: block; margin-top: 5px; color: #667085; line-height: 1.45; }
+.profile-avatar { width: 92px; height: 92px; border-radius: 8px; object-fit: cover; background: #e4e7ec; }
+.profile-avatar-fallback { display: grid; place-items: center; color: #fff; background: #101828; font-size: 2rem; font-weight: 900; }
 .panel-top { display: flex; justify-content: space-between; padding: 18px; border-bottom: 1px solid rgba(16, 24, 40, 0.08); }
 .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #12b76a; box-shadow: 0 0 0 5px rgba(18, 183, 106, 0.12); }
 .metric-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(16, 24, 40, 0.08); }
@@ -84,6 +92,10 @@ button { cursor: pointer; }
 .skill-track { height: 34px; overflow: hidden; border: 1px solid rgba(16, 24, 40, 0.10); border-radius: 8px; background: #eef0f3; }
 .skill-track span { display: block; height: 100%; background: linear-gradient(90deg, #12b76a, #039855); }
 .contact-band { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 24px; align-items: start; padding: 28px; }
+.contact-profile h3 { margin: 0 0 10px; font-size: 1.6rem; }
+.contact-links { display: grid; gap: 10px; margin-top: 18px; }
+.contact-links a, .contact-links span { display: inline-flex; align-items: center; gap: 9px; width: fit-content; color: #344054; font-weight: 700; }
+.contact-links a:hover { color: #1849a9; }
 .form { display: grid; gap: 12px; }
 .field { display: grid; gap: 7px; }
 .field label, .field span { color: #344054; font-size: 0.88rem; font-weight: 700; }

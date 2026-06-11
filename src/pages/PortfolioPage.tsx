@@ -43,7 +43,7 @@ export function PortfolioPage() {
       <ProjectsSection projects={projects} />
       <ExperienceSection experiences={experiences} />
       <SkillsSection skills={skills} />
-      <ContactSection email={String(profile.email || '')} />
+      <ContactSection profile={profile} />
     </PublicLayout>
   )
 }

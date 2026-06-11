@@ -27,7 +27,7 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
       <main>{children}</main>
 
       <footer className="footer">
-        <div className="shell">Built and managed dynamically by Govinda Mandal.</div>
+        <div className="shell">Built and managed dynamically by {String(profile.name || 'Govinda Mandal')}.</div>
       </footer>
     </>
   )
