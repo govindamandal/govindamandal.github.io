@@ -36,7 +36,7 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
         <div className="shell nav-inner">
           <a className="brand" href="/">
             <span className="brand-mark">GM</span>
-            <span>{String(profile.name || 'Govinda Mandal')}</span>
+            <span className="brand-name">{String(profile.name || 'Govinda Mandal')}</span>
           </a>
           <div className="nav-actions">
             <nav className="nav-links" aria-label="Primary navigation">

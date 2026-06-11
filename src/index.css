@@ -296,7 +296,8 @@ button { cursor: pointer; }
   .project-image { min-height: 220px; }
   .timeline-item { grid-template-columns: 1fr; }
   .nav-inner { align-items: center; flex-direction: column; padding: 16px 0; }
-  .brand { justify-content: center; width: 100%; }
+  .brand { position: relative; justify-content: flex-start; width: 100%; }
+  .brand-name { position: absolute; left: 50%; transform: translateX(-50%); }
   .nav-actions { align-items: flex-start; width: 100%; justify-content: space-between; }
   .nav-links { flex-wrap: wrap; }
   .hero { padding-top: 196px; }
