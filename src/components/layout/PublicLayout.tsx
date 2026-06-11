@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { Moon, Sun } from 'lucide-react'
 import type { PortfolioItem } from '../../types/portfolio'
 
 type PublicLayoutProps = {
@@ -6,8 +8,25 @@ type PublicLayoutProps = {
 }
 
 export function PublicLayout({ profile, children }: PublicLayoutProps) {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const savedTheme = localStorage.getItem('portfolio-theme')
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      return savedTheme
+    }
+
+    return 'light'
+  })
+
+  function toggleTheme() {
+    setTheme((current) => {
+      const next = current === 'dark' ? 'light' : 'dark'
+      localStorage.setItem('portfolio-theme', next)
+      return next
+    })
+  }
+
   return (
-    <div className="public-site">
+    <div className="public-site" data-theme={theme}>
       <div className="parallax-stage" aria-hidden="true">
         <div className="glass-ribbon ribbon-a" />
         <div className="glass-ribbon ribbon-b" />
@@ -19,13 +38,24 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
             <span className="brand-mark">GM</span>
             <span>{String(profile.name || 'Govinda Mandal')}</span>
           </a>
-          <nav className="nav-links" aria-label="Primary navigation">
-            <a href="#services">Services</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-          </nav>
+          <div className="nav-actions">
+            <nav className="nav-links" aria-label="Primary navigation">
+              <a href="#services">Services</a>
+              <a href="#projects">Projects</a>
+              <a href="#experience">Experience</a>
+              <a href="#skills">Skills</a>
+              <a href="#contact">Contact</a>
+            </nav>
+            <button
+              className="theme-toggle"
+              type="button"
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              onClick={toggleTheme}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
         </div>
       </header>
 
