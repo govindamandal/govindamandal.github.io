@@ -179,7 +179,7 @@ export const collectionConfigs: CollectionConfig[] = [
     icon: <Settings size={18} />,
     fields: [
       { name: 'key', label: 'Settings key', placeholder: 'default' },
-      { name: 'headline', label: 'Hero headline', type: 'editor' },
+      { name: 'headline', label: 'Hero headline' },
       { name: 'subheadline', label: 'Hero subheadline', type: 'editor' },
       { name: 'availability', label: 'Availability text' },
       { name: 'ogImage', label: 'Open Graph image', type: 'file', accept: 'image/*' },
