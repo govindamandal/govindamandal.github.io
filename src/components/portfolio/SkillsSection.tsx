@@ -46,7 +46,10 @@ function SkillMeter({ skill }: { skill: PortfolioItem }) {
   return (
     <div className="skill-meter">
       <div className="skill-meter-head">
-        <strong>{itemTitle(skill)}</strong>
+        <span className="skill-name">
+          <SkillIcon skill={skill} />
+          <strong>{itemTitle(skill)}</strong>
+        </span>
         <span>{proficiency}/10</span>
       </div>
       <div className="skill-track" aria-label={`${itemTitle(skill)} proficiency ${percent}%`}>
@@ -54,4 +57,15 @@ function SkillMeter({ skill }: { skill: PortfolioItem }) {
       </div>
     </div>
   )
+}
+
+function SkillIcon({ skill }: { skill: PortfolioItem }) {
+  const icon = String(skill.icon || '')
+  const label = itemTitle(skill)
+
+  if (icon.startsWith('http')) {
+    return <img className="skill-icon" src={icon} alt={`${label} icon`} />
+  }
+
+  return <span className="skill-icon skill-icon-fallback">{label.slice(0, 2).toUpperCase()}</span>
 }

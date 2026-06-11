@@ -78,6 +78,9 @@ button { cursor: pointer; }
 .skill-meter { display: grid; gap: 8px; }
 .skill-meter-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .skill-meter-head span { color: #667085; font-size: 0.9rem; font-weight: 800; }
+.skill-name { display: inline-flex; align-items: center; min-width: 0; gap: 10px; color: #101828 !important; }
+.skill-icon { width: 28px; height: 28px; flex: 0 0 28px; border-radius: 8px; object-fit: contain; background: #fff; }
+.skill-icon-fallback { display: grid; place-items: center; color: #fff !important; background: #101828; font-size: 0.72rem !important; }
 .skill-track { height: 34px; overflow: hidden; border: 1px solid rgba(16, 24, 40, 0.10); border-radius: 8px; background: #eef0f3; }
 .skill-track span { display: block; height: 100%; background: linear-gradient(90deg, #12b76a, #039855); }
 .contact-band { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 24px; align-items: start; padding: 28px; }
@@ -86,6 +89,9 @@ button { cursor: pointer; }
 .field label, .field span { color: #344054; font-size: 0.88rem; font-weight: 700; }
 .input, .textarea, .select { width: 100%; padding: 12px 13px; color: #101828; border: 1px solid rgba(16, 24, 40, 0.14); border-radius: 8px; background: #fff; }
 .textarea { min-height: 110px; resize: vertical; }
+.file-field { display: grid; gap: 8px; }
+.uploaded-list { display: grid; gap: 6px; padding: 10px; border: 1px solid rgba(16, 24, 40, 0.08); border-radius: 8px; background: #f9fafb; }
+.uploaded-list a { overflow: hidden; color: #1849a9; font-size: 0.86rem; text-overflow: ellipsis; white-space: nowrap; }
 .footer { padding: 34px 0; color: #667085; border-top: 1px solid rgba(16, 24, 40, 0.08); }
 
 .admin-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
