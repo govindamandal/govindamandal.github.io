@@ -7,7 +7,12 @@ type PublicLayoutProps = {
 
 export function PublicLayout({ profile, children }: PublicLayoutProps) {
   return (
-    <>
+    <div className="public-site">
+      <div className="parallax-stage" aria-hidden="true">
+        <div className="glass-ribbon ribbon-a" />
+        <div className="glass-ribbon ribbon-b" />
+        <div className="glass-ribbon ribbon-c" />
+      </div>
       <header className="nav">
         <div className="shell nav-inner">
           <a className="brand" href="#/">
@@ -29,6 +34,6 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
       <footer className="footer">
         <div className="shell">Built and managed dynamically by {String(profile.name || 'Govinda Mandal')}.</div>
       </footer>
-    </>
+    </div>
   )
 }

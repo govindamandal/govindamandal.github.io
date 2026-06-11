@@ -22,7 +22,7 @@ export function PortfolioPage() {
   }, [])
 
   const profile = site.profile || fallbackData.profile!
-  const settings = site.siteSettings || fallbackData.siteSettings!
+  const settings = site.siteSettings || {}
   const services = site.services?.length ? site.services : fallbackData.services
   const projects = site.projects.length ? site.projects : fallbackData.projects
   const skills = site.skills.length ? site.skills : fallbackData.skills
