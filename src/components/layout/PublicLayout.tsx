@@ -14,7 +14,7 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
       return savedTheme
     }
 
-    return 'light'
+    return 'dark'
   })
 
   function toggleTheme() {
