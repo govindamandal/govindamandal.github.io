@@ -7,7 +7,8 @@ import type { CollectionConfig, PortfolioItem } from '../types/portfolio'
 export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
   const [items, setItems] = useState<PortfolioItem[]>([])
   const [selected, setSelected] = useState<PortfolioItem | null>(null)
-  const [status, setStatus] = useState('')
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
+  const [isSaving, setIsSaving] = useState(false)
   const isSingleton = config.key === 'profile' || config.key === 'siteSettings'
 
   const loadItems = useCallback(async () => {
@@ -15,9 +16,8 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
       const data = await apiFetch<{ items: PortfolioItem[] }>(`/api/admin/${config.key}`)
       setItems(data.items)
       setSelected(data.items[0] || null)
-      setStatus('')
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Could not load items')
+      setToast({ type: 'error', message: error instanceof Error ? error.message : 'Could not load items' })
     }
   }, [config.key])
 
@@ -28,6 +28,15 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
 
     return () => window.clearTimeout(timer)
   }, [loadItems])
+
+  useEffect(() => {
+    if (!toast) {
+      return undefined
+    }
+
+    const timer = window.setTimeout(() => setToast(null), 3500)
+    return () => window.clearTimeout(timer)
+  }, [toast])
 
   const emptyItem = useMemo(() => {
     const initial: PortfolioItem = { isPublic: true }
@@ -40,12 +49,17 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
     const path = item._id ? `/api/admin/${config.key}/${item._id}` : `/api/admin/${config.key}`
     const method = item._id ? 'PUT' : 'POST'
 
+    setIsSaving(true)
+    setToast(null)
+
     try {
       await apiFetch(path, { method, body: JSON.stringify(payload) })
-      setStatus('Saved')
       await loadItems()
+      setToast({ type: 'success', message: `${singularLabel(config.label)} is saved successfully!` })
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Could not save')
+      setToast({ type: 'error', message: error instanceof Error ? error.message : `Could not save ${singularLabel(config.label).toLowerCase()}` })
+    } finally {
+      setIsSaving(false)
     }
   }
 
@@ -53,10 +67,10 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
     if (!item._id) return
     try {
       await apiFetch(`/api/admin/${config.key}/${item._id}`, { method: 'DELETE' })
-      setStatus('Deleted')
       await loadItems()
+      setToast({ type: 'success', message: `${singularLabel(config.label)} is deleted successfully!` })
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Could not delete')
+      setToast({ type: 'error', message: error instanceof Error ? error.message : `Could not delete ${singularLabel(config.label).toLowerCase()}` })
     }
   }
 
@@ -89,10 +103,30 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
             onSave={save}
             onDelete={remove}
             canDelete={!isSingleton}
+            isSaving={isSaving}
           />
-          {status ? <p className="notice">{status}</p> : null}
         </section>
       </div>
+      {toast ? (
+        <div className="toast-stack" aria-live="polite" aria-atomic="true">
+          <div className={`toast ${toast.type}`}>{toast.message}</div>
+        </div>
+      ) : null}
     </div>
   )
+}
+
+function singularLabel(label: string) {
+  const labels: Record<string, string> = {
+    Certifications: 'Certification',
+    Courses: 'Course',
+    Projects: 'Project',
+    Services: 'Service',
+    Skills: 'Skill',
+    Testimonials: 'Testimonial',
+    'Contact Messages': 'Contact Message',
+    'Site Settings': 'Site Settings'
+  }
+
+  return labels[label] || label
 }

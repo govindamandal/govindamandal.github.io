@@ -120,6 +120,7 @@ button { cursor: pointer; }
 .public-site[data-theme="dark"] .theme-toggle:hover { color: #93c5fd; border-color: rgba(147, 197, 253, 0.35); }
 
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 16px; color: #fff; border: 1px solid rgba(16, 24, 40, 0.88); border-radius: 8px; background: linear-gradient(145deg, #101828, #1d3f58); box-shadow: 0 14px 34px rgba(16, 24, 40, 0.16); font-weight: 700; }
+.button:disabled { cursor: not-allowed; opacity: 0.68; }
 .button.secondary { color: #101828; border-color: rgba(255, 255, 255, 0.78); background: rgba(255, 255, 255, 0.38); backdrop-filter: blur(16px) saturate(150%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.70); }
 .button.ghost { color: #101828; border-color: rgba(255, 255, 255, 0.78); background: rgba(255, 255, 255, 0.54); backdrop-filter: blur(16px) saturate(150%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.70); }
 .public-site[data-theme="dark"] .button { border-color: rgba(255, 255, 255, 0.18); background: linear-gradient(145deg, #f8fafc, #bfd8f3); color: #0b1220; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28); }
@@ -275,6 +276,10 @@ button { cursor: pointer; }
 .login-card { width: min(440px, 100%); padding: 28px; }
 .notice { padding: 12px 14px; color: #1849a9; border: 1px solid rgba(24, 73, 169, 0.18); border-radius: 8px; background: rgba(239, 244, 255, 0.8); }
 .error { color: #b42318; }
+.toast-stack { position: fixed; top: 22px; right: 22px; z-index: 100; display: grid; gap: 10px; width: min(360px, calc(100vw - 32px)); }
+.toast { padding: 13px 15px; color: #101828; border: 1px solid rgba(16, 24, 40, 0.10); border-radius: 8px; background: #fff; box-shadow: 0 20px 52px rgba(16, 24, 40, 0.18); font-weight: 800; }
+.toast.success { color: #05603a; border-color: rgba(18, 183, 106, 0.24); background: #ecfdf3; }
+.toast.error { color: #b42318; border-color: rgba(240, 68, 56, 0.24); background: #fef3f2; }
 .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: rgba(16, 24, 40, 0.58); }
 .project-modal { width: min(980px, 100%); max-height: min(860px, calc(100vh - 48px)); overflow: auto; padding: 24px; background: #fff; }
 .public-site[data-theme="dark"] .modal-backdrop { background: rgba(2, 6, 23, 0.72); }

@@ -7,14 +7,16 @@ import type { CollectionConfig, PortfolioItem } from '../../types/portfolio'
 type AdminFormProps = {
   config: CollectionConfig
   item: PortfolioItem
-  onSave: (item: PortfolioItem) => void
+  onSave: (item: PortfolioItem) => Promise<void>
   onDelete: (item: PortfolioItem) => void
   canDelete: boolean
+  isSaving?: boolean
 }
 
-export function AdminForm({ config, item, onSave, onDelete, canDelete }: AdminFormProps) {
+export function AdminForm({ config, item, onSave, onDelete, canDelete, isSaving = false }: AdminFormProps) {
   const [draft, setDraft] = useState<PortfolioItem>(item)
   const [uploadingField, setUploadingField] = useState('')
+  const isBusy = isSaving || Boolean(uploadingField)
 
   function update(name: string, value: string | boolean | number) {
     setDraft((current) => {
@@ -129,8 +131,10 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete }: AdminFo
         </label>
       ))}
       <div className="admin-actions">
-        <button className="button" type="submit">Save</button>
-        {canDelete && draft._id ? <button className="button secondary" type="button" onClick={() => onDelete(draft)}>Delete</button> : null}
+        <button className="button" type="submit" disabled={isBusy}>
+          {isSaving ? 'Saving...' : 'Save'}
+        </button>
+        {canDelete && draft._id ? <button className="button secondary" type="button" disabled={isBusy} onClick={() => onDelete(draft)}>Delete</button> : null}
       </div>
     </form>
   )
