@@ -13,7 +13,7 @@ export const fallbackData: SiteData = {
   },
   siteSettings: {
     key: 'default',
-    headline: 'Full-stack developer building dynamic products for real businesses.',
+    headline: 'Full Stack Developer | AI Full Stack Engineer | AI Software Engineer | Senior Full Stack Developer | Cloud-Native Backend Engineer',
     subheadline:
       'A dynamic portfolio powered by MongoDB, Vercel APIs, Cloudflare R2, and a custom admin panel.',
     availability: 'Available for meaningful web work'

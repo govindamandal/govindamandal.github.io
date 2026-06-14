@@ -1,7 +1,16 @@
-import { motion } from 'framer-motion'
+import { useEffect, useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowUpRight, ExternalLink, MapPin } from 'lucide-react'
 import type { PortfolioItem } from '../../types/portfolio'
 import { RichText } from './RichText'
+
+const DEFAULT_ROLES = [
+  'Full Stack Developer',
+  'AI Full Stack Engineer',
+  'AI Software Engineer',
+  'Senior Full Stack Developer',
+  'Cloud-Native Backend Engineer'
+]
 
 type HeroSectionProps = {
   profile: PortfolioItem
@@ -25,10 +34,30 @@ export function HeroSection({
   const name = String(profile.name || 'Govinda Mandal')
   const title = String(profile.title || 'Full-stack developer')
   const summary = settings.subheadline || profile.summary || ''
+  const headline = String(settings.headline || DEFAULT_ROLES.join(' | '))
+  const roles = useMemo(() => parseRoles(headline), [headline])
+  const [roleIndex, setRoleIndex] = useState(0)
   const avatarUrl = String(profile.avatarUrl || '')
   const location = String(profile.location || '')
   const linkedInUrl = String(profile.linkedInUrl || '')
   const githubUrl = String(profile.githubUrl || '')
+  const activeRole = roles[roleIndex] || title
+
+  useEffect(() => {
+    setRoleIndex(0)
+  }, [roles])
+
+  useEffect(() => {
+    if (roles.length <= 1) {
+      return undefined
+    }
+
+    const timer = window.setInterval(() => {
+      setRoleIndex((current) => (current + 1) % roles.length)
+    }, 5000)
+
+    return () => window.clearInterval(timer)
+  }, [roles])
 
   return (
     <section className="shell hero">
@@ -37,7 +66,24 @@ export function HeroSection({
           <span className="status-dot" />
           {String(settings.availability || 'Available for meaningful web work')}
         </span>
-        <h1>{String(settings.headline || title)}</h1>
+        <h1 className="hero-heading">
+          <span className="hero-heading-prefix">Building scalable products as a</span>
+          <span className="role-rotator" aria-live="polite">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={activeRole}
+                className="role-text"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.45, ease: 'easeOut' }}
+              >
+                {activeRole}
+              </motion.span>
+            </AnimatePresence>
+            <span key={`${activeRole}-line`} className="role-underline" aria-hidden="true" />
+          </span>
+        </h1>
         <RichText value={summary} />
         <div className="profile-meta" aria-label="Profile links">
           {location ? (
@@ -93,4 +139,21 @@ export function HeroSection({
       </motion.aside>
     </section>
   )
+}
+
+function parseRoles(value: string) {
+  const roles = value
+    .split('|')
+    .map((role) => role.trim())
+    .filter(Boolean)
+
+  if (roles.length > 1) {
+    return roles
+  }
+
+  if (!value || value.toLowerCase().includes('building scalable cloud-native products')) {
+    return DEFAULT_ROLES
+  }
+
+  return roles.length ? roles : DEFAULT_ROLES
 }
