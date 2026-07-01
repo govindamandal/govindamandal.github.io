@@ -275,6 +275,7 @@ button { cursor: pointer; }
 .admin-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); min-height: 100vh; }
 .admin-sidebar { position: sticky; top: 0; height: 100vh; padding: 22px; color: #fff; background: #101828; }
 .admin-main { padding: 28px; }
+.admin-topbar { display: flex; justify-content: flex-end; margin-bottom: 18px; }
 .admin-nav { display: grid; gap: 6px; margin-top: 24px; }
 .admin-nav a, .admin-nav button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 12px; color: rgba(255, 255, 255, 0.78); border: 0; border-radius: 8px; background: transparent; text-align: left; }
 .admin-nav a.active, .admin-nav a:hover, .admin-nav button:hover { color: #fff; background: rgba(255, 255, 255, 0.10); }

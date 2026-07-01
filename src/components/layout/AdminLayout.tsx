@@ -1,4 +1,4 @@
-import { LayoutDashboard, LogOut } from 'lucide-react'
+import { ExternalLink, LayoutDashboard, LogOut } from 'lucide-react'
 import { NavLink, Route, Routes, useNavigate } from 'react-router-dom'
 import { collectionConfigs } from '../../config/adminCollections'
 import { apiFetch } from '../../lib/api'
@@ -33,6 +33,11 @@ export function AdminLayout() {
         </nav>
       </aside>
       <main className="admin-main">
+        <div className="admin-topbar">
+          <a className="button ghost" href="/" target="_blank" rel="noreferrer">
+            Visit portfolio <ExternalLink size={18} />
+          </a>
+        </div>
         <Routes>
           <Route path="/" element={<AdminDashboardPage />} />
           {collectionConfigs.map((config) => (
