@@ -10,7 +10,12 @@ export function ServicesSection({ services }: { services: PortfolioItem[] }) {
     <Section id="services" title="Services" copy="Practical engineering services I can provide for product teams, agencies, companies, and client projects.">
       <motion.div className="grid three" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.18 }}>
         {services.map((service, index) => (
-          <motion.article className="card service-card motion-card" key={service._id || index} variants={cardReveal}>
+          <motion.article
+            className="card service-card motion-card"
+            key={service._id || index}
+            variants={cardReveal}
+            whileHover={{ y: -10, scale: 1.045, transition: { duration: 0.24, ease: 'easeOut' } }}
+          >
             <span className="service-index">{String(index + 1).padStart(2, '0')}</span>
             <h3>{itemTitle(service)}</h3>
             <RichText value={service.description} />
