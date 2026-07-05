@@ -19,7 +19,7 @@ export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
             key={project._id || index}
             type="button"
             variants={cardReveal}
-            whileHover={{ y: -6, transition: { duration: 0.22 } }}
+            whileHover={{ y: -10, scale: 1.045, transition: { duration: 0.24, ease: 'easeOut' } }}
             onClick={() => setActiveProject(project)}
           >
             <ProjectImage project={project} />
