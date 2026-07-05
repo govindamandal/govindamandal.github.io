@@ -1,5 +1,7 @@
+import { motion } from 'framer-motion'
 import { itemTitle } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { cardReveal, staggerGroup } from './motion'
 import { Section } from './Section'
 
 const categoryOrder = [
@@ -23,18 +25,18 @@ export function SkillsSection({ skills }: { skills: PortfolioItem[] }) {
 
   return (
     <Section id="skills" title="Skills" copy="Skills are grouped by practical engineering areas and show strength from 1 to 10.">
-      <div className="skills-groups">
+      <motion.div className="skills-groups" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }}>
         {groupedSkills.map((group) => (
-          <article className="card skill-group" key={group.category}>
+          <motion.article className="card skill-group motion-card" key={group.category} variants={cardReveal}>
             <h3>{group.category}</h3>
             <div className="skill-list">
               {group.skills.map((skill, index) => (
                 <SkillMeter skill={skill} key={skill._id || index} />
               ))}
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </Section>
   )
 }
@@ -52,7 +54,7 @@ function SkillMeter({ skill }: { skill: PortfolioItem }) {
         <span>{proficiency}%</span>
       </div>
       <div className="skill-track" aria-label={`${itemTitle(skill)} proficiency ${proficiency}%`}>
-        <span style={{ width: `${proficiency}%` }} />
+        <motion.span initial={{ width: 0 }} whileInView={{ width: `${proficiency}%` }} viewport={{ once: true, amount: 0.8 }} transition={{ duration: 0.8, ease: 'easeOut' }} />
       </div>
     </div>
   )

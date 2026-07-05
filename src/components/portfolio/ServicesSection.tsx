@@ -1,14 +1,16 @@
+import { motion } from 'framer-motion'
 import { itemTitle, toArray } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { cardReveal, staggerGroup } from './motion'
 import { RichText } from './RichText'
 import { Section } from './Section'
 
 export function ServicesSection({ services }: { services: PortfolioItem[] }) {
   return (
     <Section id="services" title="Services" copy="Practical engineering services I can provide for product teams, agencies, companies, and client projects.">
-      <div className="grid three">
+      <motion.div className="grid three" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.18 }}>
         {services.map((service, index) => (
-          <article className="card service-card" key={service._id || index}>
+          <motion.article className="card service-card motion-card" key={service._id || index} variants={cardReveal}>
             <span className="service-index">{String(index + 1).padStart(2, '0')}</span>
             <h3>{itemTitle(service)}</h3>
             <RichText value={service.description} />
@@ -17,9 +19,9 @@ export function ServicesSection({ services }: { services: PortfolioItem[] }) {
                 <span className="tag" key={technology}>{technology}</span>
               ))}
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </Section>
   )
 }

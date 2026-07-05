@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion'
+import { sectionReveal } from './motion'
+
 type SectionProps = {
   id: string
   title: string
@@ -7,7 +10,14 @@ type SectionProps = {
 
 export function Section({ id, title, copy, children }: SectionProps) {
   return (
-    <section className="shell section" id={id}>
+    <motion.section
+      className="shell section"
+      id={id}
+      variants={sectionReveal}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.18 }}
+    >
       <div className="section-head">
         <div>
           <h2 className="section-title">{title}</h2>
@@ -15,6 +25,6 @@ export function Section({ id, title, copy, children }: SectionProps) {
         </div>
       </div>
       {children}
-    </section>
+    </motion.section>
   )
 }

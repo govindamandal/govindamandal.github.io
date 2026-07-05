@@ -1,8 +1,10 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ExternalLink, Mail, MapPin } from 'lucide-react'
 import { apiFetch } from '../../lib/api'
 import type { PortfolioItem } from '../../types/portfolio'
+import { cardReveal } from './motion'
 import { Section } from './Section'
 
 export function ContactSection({ profile }: { profile: PortfolioItem }) {
@@ -35,7 +37,7 @@ function ContactForm({ profile }: { profile: PortfolioItem }) {
   }
 
   return (
-    <div className="card contact-band">
+    <motion.div className="card contact-band motion-card" variants={cardReveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.22 }}>
       <div className="contact-profile">
         <h3>Contact</h3>
         <p className="muted">Prefer email? Reach me at {email || 'your configured email'}.</p>
@@ -53,6 +55,6 @@ function ContactForm({ profile }: { profile: PortfolioItem }) {
         <button className="button" type="submit"><Mail size={18} /> Send message</button>
         {status ? <p className="muted">{status}</p> : null}
       </form>
-    </div>
+    </motion.div>
   )
 }
