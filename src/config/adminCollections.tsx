@@ -64,7 +64,6 @@ export const collectionConfigs: CollectionConfig[] = [
     label: 'Experience',
     icon: <BriefcaseBusiness size={18} />,
     fields: [
-      { name: 'title', label: 'Job title' },
       { name: 'position', label: 'Position' },
       { name: 'company', label: 'Company' },
       { name: 'location', label: 'Location' },
@@ -75,7 +74,7 @@ export const collectionConfigs: CollectionConfig[] = [
       { name: 'responsibilities', label: 'Responsibilities', placeholder: 'Built APIs, Improved performance' },
       { name: 'technologies', label: 'Technologies', placeholder: 'React, PHP, MySQL' },
       { name: 'companyUrl', label: 'Company URL', type: 'url' },
-      { name: 'logo', label: 'Logo', type: 'file', accept: 'image/*' },
+      { name: 'logo', label: 'Company Logo', type: 'file', accept: 'image/*' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
   },
