@@ -97,7 +97,7 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete, isSaving 
               {field.options?.map((option) => (
                 <label className="radio-option" key={String(option.value)}>
                   <input
-                    checked={(draft[field.name] ?? '') === option.value}
+                    checked={isRadioChecked(field.name, option.value, draft[field.name])}
                     name={field.name}
                     type="radio"
                     value={String(option.value)}
@@ -106,6 +106,19 @@ export function AdminForm({ config, item, onSave, onDelete, canDelete, isSaving 
                   <span>{option.label}</span>
                 </label>
               ))}
+            </div>
+          ) : field.type === 'range' ? (
+            <div className="range-field">
+              <input
+                className="range-input"
+                disabled={isFieldDisabled(field, draft)}
+                max={field.max ?? 100}
+                min={field.min ?? 0}
+                type="range"
+                value={Number(draft[field.name] ?? field.min ?? 0)}
+                onChange={(event) => update(field.name, Number(event.target.value))}
+              />
+              <strong>{Number(draft[field.name] ?? field.min ?? 0)}%</strong>
             </div>
           ) : field.type === 'file' ? (
             <FileField
@@ -146,6 +159,14 @@ function isFieldDisabled(field: CollectionConfig['fields'][number], draft: Portf
   }
 
   return draft[field.disabledWhen.field] === field.disabledWhen.value
+}
+
+function isRadioChecked(name: string, optionValue: string | boolean, currentValue: unknown) {
+  if (name === 'status' && currentValue === undefined && optionValue === 'active') {
+    return true
+  }
+
+  return (currentValue ?? '') === optionValue
 }
 
 function FileField({

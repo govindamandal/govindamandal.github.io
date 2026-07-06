@@ -30,7 +30,7 @@ export type SiteData = {
 export type FieldConfig = {
   name: string
   label: string
-  type?: 'text' | 'textarea' | 'editor' | 'url' | 'number' | 'checkbox' | 'file' | 'month' | 'date' | 'radio'
+  type?: 'text' | 'textarea' | 'editor' | 'url' | 'number' | 'range' | 'checkbox' | 'file' | 'month' | 'date' | 'radio'
   placeholder?: string
   accept?: string
   multiple?: boolean

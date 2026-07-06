@@ -41,6 +41,7 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
   const emptyItem = useMemo(() => {
     const initial: PortfolioItem = { isPublic: true }
     if (config.key === 'siteSettings') initial.key = 'default'
+    if (config.key === 'skills') initial.status = 'active'
     return initial
   }, [config.key])
 
@@ -88,7 +89,7 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
             {items.map((item) => (
               <button className={`item-button ${selected?._id === item._id ? 'active' : ''}`} key={item._id} type="button" onClick={() => setSelected(item)}>
                 <strong>{itemTitle(item)}</strong>
-                <div className="muted">{item.isPublic === false ? 'Hidden' : 'Published'}</div>
+                <div className="muted">{itemStatusLabel(config.key, item)}</div>
               </button>
             ))}
             {!items.length ? <p className="muted">No entries yet.</p> : null}
@@ -114,6 +115,15 @@ export function AdminCollectionPage({ config }: { config: CollectionConfig }) {
       ) : null}
     </div>
   )
+}
+
+function itemStatusLabel(collection: string, item: PortfolioItem) {
+  if (collection === 'skills') {
+    const status = String(item.status || 'active')
+    return item.isPublic === false || status === 'inactive' ? 'Inactive' : 'Active'
+  }
+
+  return item.isPublic === false ? 'Hidden' : 'Published'
 }
 
 function singularLabel(label: string) {

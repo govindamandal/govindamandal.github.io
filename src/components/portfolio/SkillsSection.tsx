@@ -16,10 +16,11 @@ const categoryOrder = [
 ]
 
 export function SkillsSection({ skills }: { skills: PortfolioItem[] }) {
+  const activeSkills = skills.filter((skill) => String(skill.status || 'active') === 'active')
   const groupedSkills = categoryOrder
     .map((category) => ({
       category,
-      skills: skills.filter((skill) => String(skill.category || 'Other') === category)
+      skills: activeSkills.filter((skill) => String(skill.category || 'Other') === category)
     }))
     .filter((group) => group.skills.length)
 

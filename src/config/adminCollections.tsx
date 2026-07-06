@@ -85,8 +85,12 @@ export const collectionConfigs: CollectionConfig[] = [
     fields: [
       { name: 'name', label: 'Skill name' },
       { name: 'category', label: 'Category', placeholder: 'Backend, Frontend, Database, Messaging & Streaming, Cloud, Observability & Tools, AI Tools' },
-      { name: 'proficiency', label: 'Proficiency', type: 'number', min: 0, max: 100 },
+      { name: 'proficiency', label: 'Proficiency', type: 'range', min: 0, max: 100 },
       { name: 'icon', label: 'Icon', type: 'file', accept: 'image/*' },
+      { name: 'status', label: 'Status', type: 'radio', options: [
+        { label: 'Active', value: 'active' },
+        { label: 'Inactive', value: 'inactive' }
+      ] },
       { name: 'displayOrder', label: 'Display order', type: 'number' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]
