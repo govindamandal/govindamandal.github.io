@@ -55,6 +55,7 @@ export const collectionConfigs: CollectionConfig[] = [
         { label: 'Published', value: 'published' },
         { label: 'Archived', value: 'archived' }
       ] },
+      { name: 'displayOrder', label: 'Display order', type: 'number' },
       { name: 'featured', label: 'Featured', type: 'checkbox' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]

@@ -24,6 +24,7 @@ export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
           >
             <ProjectImage project={project} />
             <div className="project-card-body">
+              <span className="project-type-badge">{projectTypeLabel(project)}</span>
               <p className="muted">{String(project.company || project.client || project.yourRole || project.role || 'Project')}</p>
               <h3>{itemTitle(project)}</h3>
               <RichText value={project.description || 'Add details from the admin panel.'} />
@@ -64,6 +65,7 @@ function ProjectModal({ project, onClose }: { project: PortfolioItem; onClose: (
       <motion.div className="project-modal card" initial={{ opacity: 0, y: 28, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 18, scale: 0.97 }} transition={{ duration: 0.28, ease: 'easeOut' }}>
         <div className="modal-head">
           <div>
+            <span className="project-type-badge">{projectTypeLabel(project)}</span>
             <p className="muted">{String(project.company || project.client || 'Project detail')}</p>
             <h2 id="project-modal-title">{itemTitle(project)}</h2>
           </div>
@@ -106,4 +108,8 @@ function ProjectModal({ project, onClose }: { project: PortfolioItem; onClose: (
       </motion.div>
     </motion.div>
   )
+}
+
+function projectTypeLabel(project: PortfolioItem) {
+  return String(project.projectType || '') === 'personal' ? 'Type: Personal Project' : 'Type: Company Project'
 }
