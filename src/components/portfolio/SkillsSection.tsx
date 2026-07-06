@@ -25,7 +25,7 @@ export function SkillsSection({ skills }: { skills: PortfolioItem[] }) {
 
   return (
     <Section id="skills" title="Skills" copy="Skills are grouped by practical engineering areas and show strength from 1 to 10.">
-      <motion.div className="skills-groups" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }}>
+      <motion.div className="skills-groups" variants={staggerGroup} initial="visible" animate="visible">
         {groupedSkills.map((group) => (
           <motion.article className="card skill-group motion-card" key={group.category} variants={cardReveal}>
             <h3>{group.category}</h3>

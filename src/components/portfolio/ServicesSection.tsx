@@ -8,7 +8,7 @@ import { Section } from './Section'
 export function ServicesSection({ services }: { services: PortfolioItem[] }) {
   return (
     <Section id="services" title="Services" copy="Practical engineering services I can provide for product teams, agencies, companies, and client projects.">
-      <motion.div className="grid three" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.18 }}>
+      <motion.div className="grid three" variants={staggerGroup} initial="visible" animate="visible">
         {services.map((service, index) => (
           <motion.article
             className="card service-card motion-card"

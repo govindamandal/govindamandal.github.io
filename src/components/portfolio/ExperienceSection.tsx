@@ -11,7 +11,7 @@ export function ExperienceSection({ experiences }: { experiences: PortfolioItem[
 
   return (
     <Section id="experience" title="Experience" copy="Keep your current role, previous roles, and client engagements updated without redeploying the site.">
-      <motion.div className="timeline" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.16 }}>
+      <motion.div className="timeline" variants={staggerGroup} initial="visible" animate="visible">
         {sortedExperiences.map((experience, index) => (
           <motion.article className="card timeline-item motion-card" key={experience._id || index} variants={cardReveal}>
             <div className="experience-date">

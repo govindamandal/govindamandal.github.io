@@ -12,7 +12,7 @@ export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
 
   return (
     <Section id="projects" title="Projects" copy="A selected view of company, client, and personal projects. Click any card to see the role, stack, links, and gallery.">
-      <motion.div className="grid two" variants={staggerGroup} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.12 }}>
+      <motion.div className="grid two" variants={staggerGroup} initial="visible" animate="visible">
         {projects.map((project, index) => (
           <motion.button
             className="card project-card motion-card"

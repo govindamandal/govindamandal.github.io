@@ -37,7 +37,7 @@ function ContactForm({ profile }: { profile: PortfolioItem }) {
   }
 
   return (
-    <motion.div className="card contact-band motion-card" variants={cardReveal} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.22 }}>
+    <motion.div className="card contact-band motion-card" variants={cardReveal} initial="visible" animate="visible">
       <div className="contact-profile">
         <h3>Contact</h3>
         <p className="muted">Prefer email? Reach me at {email || 'your configured email'}.</p>
