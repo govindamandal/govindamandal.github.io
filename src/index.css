@@ -231,6 +231,12 @@ button { cursor: pointer; }
 .service-card { min-height: 260px; padding: 22px; }
 .service-index { display: inline-block; margin-bottom: 26px; color: #1849a9; font-weight: 800; }
 .public-site[data-theme="dark"] .service-index { color: #93c5fd; }
+.primary-skills-strip { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.primary-skill-chip { display: grid; place-items: center; width: 64px; height: 64px; border: 1px solid var(--glass-border); border-radius: 8px; background: var(--glass-bg); box-shadow: 0 18px 54px rgba(29, 57, 85, 0.10); backdrop-filter: blur(18px) saturate(155%); cursor: help; transform-origin: center; transition: border-color 180ms ease, box-shadow 260ms ease, transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.primary-skill-chip:hover { z-index: 8; border-color: rgba(255, 255, 255, 0.92); box-shadow: 0 28px 74px rgba(24, 73, 169, 0.22), 0 8px 26px rgba(16, 24, 40, 0.12); transform: translateY(-8px) scale(1.08); }
+.primary-skill-icon { width: 36px; height: 36px; border-radius: 8px; object-fit: contain; background: #fff; }
+.primary-skill-icon-fallback { display: grid; place-items: center; color: #fff; background: #101828; font-size: 0.82rem; font-weight: 900; }
+.public-site[data-theme="dark"] .primary-skill-chip { box-shadow: 0 18px 54px rgba(0, 0, 0, 0.26); }
 .project-card { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 0; width: 100%; overflow: hidden; padding: 0; color: inherit; text-align: left; }
 .project-card:hover { border-color: rgba(255, 255, 255, 0.92); box-shadow: 0 34px 92px rgba(24, 73, 169, 0.20), 0 8px 26px rgba(16, 24, 40, 0.12); }
 .project-card-body { padding: 22px; }

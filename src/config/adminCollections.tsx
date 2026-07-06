@@ -91,6 +91,7 @@ export const collectionConfigs: CollectionConfig[] = [
         { label: 'Active', value: 'active' },
         { label: 'Inactive', value: 'inactive' }
       ] },
+      { name: 'isPrimary', label: 'Primary skill', type: 'checkbox' },
       { name: 'displayOrder', label: 'Display order', type: 'number' },
       { name: 'isPublic', label: 'Published', type: 'checkbox' }
     ]

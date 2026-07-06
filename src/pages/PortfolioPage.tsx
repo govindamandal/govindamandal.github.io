@@ -3,6 +3,7 @@ import { PublicLayout } from '../components/layout/PublicLayout'
 import { ContactSection } from '../components/portfolio/ContactSection'
 import { ExperienceSection } from '../components/portfolio/ExperienceSection'
 import { HeroSection } from '../components/portfolio/HeroSection'
+import { PrimarySkillsSection } from '../components/portfolio/PrimarySkillsSection'
 import { ProjectsSection } from '../components/portfolio/ProjectsSection'
 import { ServicesSection } from '../components/portfolio/ServicesSection'
 import { SkillsSection } from '../components/portfolio/SkillsSection'
@@ -43,6 +44,7 @@ export function PortfolioPage() {
         skillCount={skills.length}
         loading={loading}
       />
+      <PrimarySkillsSection skills={skills} />
       <ServicesSection services={services} />
       <ProjectsSection projects={projects} />
       <ExperienceSection experiences={experiences} />
