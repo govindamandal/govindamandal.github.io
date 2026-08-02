@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ExternalLink, MapPin } from 'lucide-react'
 import { itemTitle, toArray } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { InteractiveCard } from './InteractiveCard'
 import { cardReveal, staggerGroup } from './motion'
 import { RichText } from './RichText'
 import { Section } from './Section'
@@ -13,7 +14,7 @@ export function ExperienceSection({ experiences }: { experiences: PortfolioItem[
     <Section id="experience" title="Experience" copy="Keep your current role, previous roles, and client engagements updated without redeploying the site.">
       <motion.div className="timeline" variants={staggerGroup} initial="visible" animate="visible">
         {sortedExperiences.map((experience, index) => (
-          <motion.article className="card timeline-item motion-card" key={experience._id || index} variants={cardReveal}>
+          <InteractiveCard as="article" className="card timeline-item motion-card" key={experience._id || index} variants={cardReveal}>
             <div className="experience-date">
               <span>{formatMonth(String(experience.startDate || ''))}</span>
               <span>{experience.currentlyWorking ? 'Present' : formatMonth(String(experience.endDate || ''))}</span>
@@ -45,7 +46,7 @@ export function ExperienceSection({ experiences }: { experiences: PortfolioItem[
                 </div>
               ) : null}
             </div>
-          </motion.article>
+          </InteractiveCard>
         ))}
       </motion.div>
     </Section>

@@ -1,9 +1,9 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { ExternalLink, Mail, MapPin } from 'lucide-react'
 import { apiFetch } from '../../lib/api'
 import type { PortfolioItem } from '../../types/portfolio'
+import { InteractiveCard } from './InteractiveCard'
 import { cardReveal } from './motion'
 import { Section } from './Section'
 
@@ -37,7 +37,7 @@ function ContactForm({ profile }: { profile: PortfolioItem }) {
   }
 
   return (
-    <motion.div className="card contact-band motion-card" variants={cardReveal} initial="visible" animate="visible">
+    <InteractiveCard className="card contact-band motion-card" variants={cardReveal} initial="visible" animate="visible">
       <div className="contact-profile">
         <h3>Contact</h3>
         <p className="muted">Prefer email? Reach me at {email || 'your configured email'}.</p>
@@ -55,6 +55,6 @@ function ContactForm({ profile }: { profile: PortfolioItem }) {
         <button className="button" type="submit"><Mail size={18} /> Send message</button>
         {status ? <p className="muted">{status}</p> : null}
       </form>
-    </motion.div>
+    </InteractiveCard>
   )
 }

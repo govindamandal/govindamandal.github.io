@@ -41,11 +41,7 @@ export function HeroSection({
   const location = String(profile.location || '')
   const linkedInUrl = String(profile.linkedInUrl || '')
   const githubUrl = String(profile.githubUrl || '')
-  const activeRole = roles[roleIndex] || title
-
-  useEffect(() => {
-    setRoleIndex(0)
-  }, [roles])
+  const activeRole = roles[roleIndex % roles.length] || title
 
   useEffect(() => {
     if (roles.length <= 1) {

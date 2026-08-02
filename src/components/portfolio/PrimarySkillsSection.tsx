@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { itemTitle } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { InteractiveCard } from './InteractiveCard'
 import { cardReveal, staggerGroup } from './motion'
 import { Section } from './Section'
 
@@ -31,7 +32,8 @@ function PrimarySkillTooltip({ skill }: { skill: PortfolioItem }) {
   return (
     <Tooltip.Root>
       <Tooltip.Trigger asChild>
-        <motion.button
+        <InteractiveCard
+          as="button"
           aria-label={label}
           className="primary-skill-chip motion-card"
           type="button"
@@ -40,7 +42,7 @@ function PrimarySkillTooltip({ skill }: { skill: PortfolioItem }) {
           whileFocus={{ y: -8, scale: 1.08, transition: { duration: 0.2, ease: 'easeOut' } }}
         >
           <SkillIcon skill={skill} />
-        </motion.button>
+        </InteractiveCard>
       </Tooltip.Trigger>
       <Tooltip.Portal>
         <Tooltip.Content className="skill-tooltip" side="top" align="center" sideOffset={10}>

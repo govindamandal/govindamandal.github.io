@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { itemTitle } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { InteractiveCard } from './InteractiveCard'
 import { cardReveal, staggerGroup } from './motion'
 import { Section } from './Section'
 
@@ -28,14 +29,14 @@ export function SkillsSection({ skills }: { skills: PortfolioItem[] }) {
     <Section id="skills" title="Skills" copy="Skills are grouped by practical engineering areas and show strength from 1 to 10.">
       <motion.div className="skills-groups" variants={staggerGroup} initial="visible" animate="visible">
         {groupedSkills.map((group) => (
-          <motion.article className="card skill-group motion-card" key={group.category} variants={cardReveal}>
+          <InteractiveCard as="article" className="card skill-group motion-card" key={group.category} variants={cardReveal}>
             <h3>{group.category}</h3>
             <div className="skill-list">
               {group.skills.map((skill, index) => (
                 <SkillMeter skill={skill} key={skill._id || index} />
               ))}
             </div>
-          </motion.article>
+          </InteractiveCard>
         ))}
       </motion.div>
     </Section>

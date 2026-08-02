@@ -3,6 +3,7 @@ import { X } from 'lucide-react'
 import { useState } from 'react'
 import { itemTitle, toArray } from '../../lib/portfolio'
 import type { PortfolioItem } from '../../types/portfolio'
+import { InteractiveCard } from './InteractiveCard'
 import { cardReveal, staggerGroup } from './motion'
 import { RichText } from './RichText'
 import { Section } from './Section'
@@ -14,12 +15,13 @@ export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
     <Section id="projects" title="Projects" copy="A selected view of company, client, and personal projects. Click any card to see the role, stack, links, and gallery.">
       <motion.div className="grid two" variants={staggerGroup} initial="visible" animate="visible">
         {projects.map((project, index) => (
-          <motion.button
+          <InteractiveCard
+            as="button"
             className="card project-card motion-card"
             key={project._id || index}
             type="button"
             variants={cardReveal}
-            whileHover={{ y: -10, scale: 1.045, transition: { duration: 0.24, ease: 'easeOut' } }}
+            whileHover={{ y: -12, scale: 1.035, rotateX: 1.2, rotateY: -1.2, transition: { duration: 0.24, ease: 'easeOut' } }}
             onClick={() => setActiveProject(project)}
           >
             <ProjectImage project={project} />
@@ -34,7 +36,7 @@ export function ProjectsSection({ projects }: { projects: PortfolioItem[] }) {
                 ))}
               </div>
             </div>
-          </motion.button>
+          </InteractiveCard>
         ))}
       </motion.div>
 

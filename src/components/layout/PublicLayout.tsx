@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
 import type { PortfolioItem } from '../../types/portfolio'
 
@@ -8,6 +9,8 @@ type PublicLayoutProps = {
 }
 
 export function PublicLayout({ profile, children }: PublicLayoutProps) {
+  const { scrollYProgress } = useScroll()
+  const scrollScale = useSpring(scrollYProgress, { stiffness: 140, damping: 26, mass: 0.25 })
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const savedTheme = localStorage.getItem('portfolio-theme')
     if (savedTheme === 'dark' || savedTheme === 'light') {
@@ -27,7 +30,13 @@ export function PublicLayout({ profile, children }: PublicLayoutProps) {
 
   return (
     <div className="public-site" data-theme={theme}>
+      <motion.div className="scroll-progress" style={{ scaleX: scrollScale }} />
       <div className="parallax-stage" aria-hidden="true">
+        <div className="dot-field" />
+        <div className="aurora-mesh" />
+        <div className="float-orb orb-a" />
+        <div className="float-orb orb-b" />
+        <div className="float-orb orb-c" />
         <div className="glass-ribbon ribbon-a" />
         <div className="glass-ribbon ribbon-b" />
         <div className="glass-ribbon ribbon-c" />
